@@ -1,5 +1,9 @@
 pipeline {
-  agent any
+  agent {
+        kubernetes {
+            inheritFrom 'sports'
+            defaultContainer 'agent-base'
+        }
 
   environment {
     REGISTRY = "docker.io/clarence"              // 你的 DockerHub namespace
