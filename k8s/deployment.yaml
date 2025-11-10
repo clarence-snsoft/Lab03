@@ -108,7 +108,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: clarencesns/frontend:v2
+          image: docker.io/clarencesns/frontend:v17
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3001
