@@ -4,7 +4,7 @@ pipeline {
             inheritFrom 'sports'
             defaultContainer 'agent-base'
         }
-
+  }
   environment {
     REGISTRY = "docker.io/clarence"              // 你的 DockerHub namespace
     IMAGE_NAME = "lab03-frontend"                // 改為 lab03-backend 也可
