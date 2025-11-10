@@ -67,7 +67,8 @@ pipeline {
         container('agent-base') {
           sh 'apk add --no-cache yq || true'
           sh """
-            yq -i '.spec.template.spec.containers[0].image = "${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"' k8s/deployment.yaml
+            yq -i 'select(.kind == "Deployment") .spec.template.spec.containers[0].image = "${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"' k8s/deployment.yaml
+
           """
         }
       }
