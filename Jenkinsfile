@@ -17,12 +17,14 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        sh 'git config --global --add safe.directory /home/jenkins/agent/workspace/Lab03-CI'
         checkout([$class: 'GitSCM',
           branches: [[name: '*/main']],
           userRemoteConfigs: [[url: "${GIT_REPO}", credentialsId: "${GIT_CRED}"]]
         ])
       }
     }
+
 
     stage('Build Docker Image') {
       steps {
