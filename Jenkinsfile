@@ -33,8 +33,8 @@ pipeline {
         container('agent-base') {
           script {
             def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-            env.IMAGE_TAG = "${sha}-${env.BUILD_NUMBER}"
-            env.IMAGE_NAME = "lab03-${params.SERVICE}"
+            env.IMAGE_TAG = "v${env.BUILD_NUMBER}"
+            env.IMAGE_NAME = "${params.SERVICE}"
 
             def buildContext = "${params.SERVICE}"
             def dockerfilePath = "${params.SERVICE}/Dockerfile"
