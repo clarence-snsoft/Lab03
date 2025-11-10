@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: docker.io/clarencesns/backend:v19
+          image: docker.io/clarencesns/backend:v22
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
