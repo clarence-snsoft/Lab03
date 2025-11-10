@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: clarence-lab03
+  namespace: argocd
+spec:
+  syncPolicy:
+    preserveResourcesOnDeletion: true
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: clarence-lab03
+      finalizers:
+        # This finalizer is for demo purposes, in production remove apps using argocd CLI "argocd app delete workload --cascade"
+        # When you invoke argocd app delete with --cascade, the finalizer is added automatically.
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        repoURL: "https://github.com/clarence-snsoft/lab02.git"
+        path: "k8s/"
+        targetRevision: "HEAD"
+        directory:
+          recurse: true
+      destination:
+        server: "https://kubernetes.default.svc"
+        namespace: "clarence-lab03"
+      syncPolicy:
+        automated:
+          allowEmpty: true
+          prune: true  # Enable pruning here as well
+        syncOptions:
+          - CreateNamespace=true
+        retry:
+          limit: 60
