@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: clarence-lab03
-  namespace: argocd
+  namespace: argocd-clarence
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -18,7 +18,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: "https://github.com/clarence-snsoft/lab02.git"
+        repoURL: "https://github.com/clarence-snsoft/lab03.git"  
         path: "k8s/"
         targetRevision: "HEAD"
         directory:
