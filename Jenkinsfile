@@ -5,6 +5,7 @@ pipeline {
             defaultContainer 'agent-base'
         }
   }
+  
   environment {
     REGISTRY = "docker.io/clarence"              // 你的 DockerHub namespace
     IMAGE_NAME = "lab03-frontend"                // 改為 lab03-backend 也可
@@ -29,6 +30,7 @@ pipeline {
           COMMIT_SHA = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
           IMAGE_TAG = "${COMMIT_SHA}-${env.BUILD_NUMBER}"
           sh """
+            git config --global --add safe.directory /home/jenkins/agent/workspace/Lab03-CI
             docker --version
             docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
           """
