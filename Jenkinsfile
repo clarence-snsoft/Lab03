@@ -1,4 +1,9 @@
 pipeline {
+  parameters {
+    choice(name: 'SERVICE', choices: ['frontend', 'backend'], description: 'Choose which service to build')
+  }
+
+  
   agent {
         kubernetes {
             inheritFrom 'sports'
@@ -28,17 +33,25 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        script {
-          COMMIT_SHA = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
-          IMAGE_TAG = "${COMMIT_SHA}-${env.BUILD_NUMBER}"
-          sh """
-            git config --global --add safe.directory /home/jenkins/agent/workspace/Lab03-CI
-            docker --version
-            docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
-          """
+        container('docker') {
+          script {
+            def sha = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+            env.IMAGE_TAG = "${sha}-${env.BUILD_NUMBER}"
+    
+            // 根據參數設定 Dockerfile 路徑與 image name
+            def buildContext = "${params.SERVICE}"
+            def dockerfilePath = "${params.SERVICE}/Dockerfile"
+            def imageName = "lab03-${params.SERVICE}"
+    
+            sh """
+              echo "Building ${imageName} from ${dockerfilePath}"
+              docker build -t docker.io/clarence/${imageName}:${IMAGE_TAG} -f ${dockerfilePath} ${buildContext}
+            """
+          }
         }
       }
     }
+
 
     stage('Push to DockerHub') {
       steps {
