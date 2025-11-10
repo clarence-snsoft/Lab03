@@ -1,6 +1,6 @@
 pipeline {
   parameters {
-    choice(name: 'SERVICE', choices: ['frontend', 'backend'], description: 'Choose which service to build')
+    choice(name: 'SERVICE', choices: ['frontend-deployment', 'backend-deployment'], description: 'Choose which service to build')
   }
 
   agent {
