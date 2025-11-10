@@ -11,7 +11,7 @@ pipeline {
   }
 
   environment {
-    REGISTRY = "docker.io/clarence"
+    REGISTRY = "docker.io/clarencesns"
     GIT_CRED = "clarence-github-cred"
     DOCKERHUB_CRED = "clarence-dockerhub-cred"
     GIT_REPO = "https://github.com/clarence-snsoft/Lab03.git"
