@@ -79,7 +79,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
-  namespace: clarence
+  namespace: clarence-lab03
 spec:
   selector:
     app: backend
@@ -140,7 +140,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend-service
-  namespace: clarence
+  namespace: clarence-lab03
 spec:
   selector:
     app: frontend
