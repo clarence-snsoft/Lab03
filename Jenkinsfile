@@ -25,6 +25,7 @@ pipeline {
           COMMIT_SHA = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
           IMAGE_TAG = "${COMMIT_SHA}-${env.BUILD_NUMBER}"
           sh """
+            echo "docker version : " docker --version
             docker build -t ${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .
           """
         }
