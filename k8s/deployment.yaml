@@ -12,7 +12,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+        - image: docker.io/clarencesns/frontend:v12
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -28,7 +28,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+        - image: docker.io/clarencesns/frontend:v12
 ---
 apiVersion: v1
 kind: Secret
@@ -42,7 +42,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+        - image: docker.io/clarencesns/frontend:v12
 # ==============================
 # Backend Deployment + Service
 # ==============================
@@ -64,7 +64,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+          image: docker.io/clarencesns/frontend:v12
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
@@ -105,7 +105,7 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+        - image: docker.io/clarencesns/frontend:v12
 # ==============================
 # Frontend Deployment + Service
 # ==============================
@@ -127,7 +127,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+          image: docker.io/clarencesns/frontend:v12
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3001
@@ -170,4 +170,4 @@ spec:
   template:
     spec:
       containers:
-        - image: docker.io/clarencesns/lab03-frontend:d80ce08-11
+        - image: docker.io/clarencesns/frontend:v12
