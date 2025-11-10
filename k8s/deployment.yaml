@@ -5,7 +5,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: frontend-config
-  namespace: clarence
+  namespace: clarence-lab03
 data:
   greeting: "Hi I am Clarence, welcome to my platform!"
 ---
@@ -13,7 +13,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: backend-volume-config
-  namespace: clarence
+  namespace: clarence-lab03
 data:
   volume.txt: |
     Hello from ConfigMap!
@@ -24,7 +24,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: backend-secret
-  namespace: clarence
+  namespace: clarence-lab03
 type: Opaque
 stringData:
   password: "supersecretpassword"
@@ -36,7 +36,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  namespace: clarence
+  namespace: clarence-lab03
 spec:
   replicas: 1
   selector:
@@ -95,7 +95,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-deployment
-  namespace: clarence
+  namespace: clarence-lab03
 spec:
   replicas: 1
   selector:
