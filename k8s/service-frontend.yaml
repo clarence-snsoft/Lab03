@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: clarence-lab03
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 3001
+      targetPort: 3001
+  type: ClusterIP

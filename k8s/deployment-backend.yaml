@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: clarence-lab03
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: docker.io/clarencesns/backend:v22
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: password
+          volumeMounts:
+            - name: volume-file
+              mountPath: /app/volume
+            - name: pvc-storage
+              mountPath: /app/pvc
+      volumes:
+        - name: volume-file
+          configMap:
+            name: backend-volume-config
+            items:
+              - key: volume.txt
+                path: volume.txt
+        - name: pvc-storage
+          persistentVolumeClaim:
+            claimName: backend-pvc

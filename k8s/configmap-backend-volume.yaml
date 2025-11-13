@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-volume-config
+  namespace: clarence-lab03
+data:
+  volume.txt: |
+    Hello from ConfigMap!
+    This file is mounted into the backend pod.
+    You can edit this content in the Config
